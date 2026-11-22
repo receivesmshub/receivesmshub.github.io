@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="google-site-verification" content="HoWofmErOOKMSn8dHeXvBTb5cGoEBEB1rQ7Y3CrUYgY" />
+<meta name="google-site-verification" content="HoWofmErOOKMSn8dHeXvBTb5cGoEBEB1rQ7Y3CrUYgY" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="color-scheme" content="light dark" />
     <link rel="icon" href="data:," />
@@ -138,15 +138,6 @@
         .menu-btn { display: inline-flex; }
       }
 
-      /* Demo notice bar */
-      .demo-bar {
-        background: var(--amber-soft); color: var(--amber);
-        border-bottom: 1px solid var(--line);
-        font-size: .88rem; font-weight: 600;
-      }
-      .demo-bar .wrap { display: flex; gap: 9px; align-items: flex-start; padding-top: 9px; padding-bottom: 9px; }
-      .demo-bar svg { width: 17px; height: 17px; flex: none; margin-top: 2px; }
-
       /* Hero */
       .hero { padding: 52px 0 40px; }
       .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 36px; align-items: center; }
@@ -234,6 +225,53 @@
         .num-row .spacer { margin-left: 0; width: 100%; }
         .num-row .spacer .btn { flex: 1; justify-content: center; }
       }
+
+      /* Find-by-country tool */
+      .finder {
+        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+        box-shadow: var(--shadow); padding: 20px;
+      }
+      .finder-search { position: relative; }
+      .finder-search > svg {
+        position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+        width: 20px; height: 20px; color: var(--muted); pointer-events: none;
+      }
+      .finder-search input {
+        width: 100%; font: inherit; font-size: 1.05rem; font-weight: 600;
+        padding: 13px 14px 13px 44px; min-height: 3.2rem;
+        border: 1.5px solid var(--line); border-radius: 12px;
+        background: var(--bg); color: var(--ink);
+      }
+      .finder-search input::placeholder { color: var(--muted); font-weight: 500; }
+      .finder-search input:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+      .finder-suggest {
+        position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 30;
+        background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+        box-shadow: var(--shadow); overflow: hidden;
+      }
+      .finder-suggest[hidden] { display: none; }
+      .finder-suggest button {
+        display: flex; align-items: center; gap: 10px; width: 100%;
+        background: none; border: 0; padding: 11px 14px; min-height: 2.75rem;
+        font-size: .98rem; font-weight: 600; color: var(--ink); text-align: left;
+      }
+      .finder-suggest button:hover, .finder-suggest button.active { background: var(--accent-soft); }
+      .finder-suggest .flag { font-size: 1.25rem; line-height: 1; }
+      .finder-suggest .cnt { margin-left: auto; color: var(--muted); font-size: .82rem; font-weight: 600; white-space: nowrap; }
+      .finder-results { margin-top: 18px; }
+      .finder-hint { color: var(--muted); margin: 0; }
+      .finder-hint strong { color: var(--ink); }
+      .finder-head { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; font-size: 1.08rem; margin-bottom: 12px; }
+      .finder-head .flag { font-size: 1.5rem; line-height: 1; }
+      .finder-note { color: var(--muted); font-size: .88rem; margin: 12px 0 0; }
+      .finder-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+      .chip {
+        display: inline-flex; align-items: center; gap: 7px;
+        background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px;
+        padding: 7px 13px; min-height: 2.25rem;
+        font-weight: 700; font-size: .9rem; color: var(--ink);
+      }
+      .chip:hover { border-color: var(--accent); color: var(--accent); }
 
       /* Steps / benefits */
       .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -383,13 +421,6 @@
         </nav>
       </div>
     </header>
-
-    <div class="demo-bar" role="note">
-      <div class="wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-        <span>Demo website: every phone number and text message shown here is a fictional sample. This site does not receive real SMS — it demonstrates how receive-SMS services work.</span>
-      </div>
-    </div>
 
     <main id="app"></main>
 
@@ -690,6 +721,22 @@
           heroMsgs +
         "</div></div></section>" +
 
+      '<section class="block" style="padding-top:4px"><div class="wrap"><div class="sec-head">' +
+        "<h2>Find numbers by country</h2>" +
+        "<p>Type a country name and its sample numbers appear right here — no need to leave this page. Every result is a clearly labelled demo number.</p></div>" +
+        '<div class="finder"><div class="finder-search">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>' +
+          '<input id="countrySearch" type="text" placeholder="Type a country name — try \u201CGermany\u201D" autocomplete="off" spellcheck="false" role="combobox" aria-expanded="false" aria-controls="countrySuggest" aria-autocomplete="list" aria-label="Find numbers by country name" />' +
+          '<div class="finder-suggest" id="countrySuggest" role="listbox" aria-label="Country suggestions" hidden></div>' +
+        '</div>' +
+        '<div class="finder-results" id="finderResults" aria-live="polite">' +
+          '<p class="finder-hint">Start typing above and that country\u2019s demo numbers will appear here. Or pick a country:</p>' +
+          '<div class="finder-chips">' + COUNTRIES.map(function (c) {
+            return '<button type="button" class="chip" data-country="' + c.id + '"><span aria-hidden="true">' + c.flag + "</span>" + esc(c.name) + "</button>";
+          }).join("") + "</div>" +
+        "</div></div>" +
+      "</div></section>" +
+
       '<section class="block"><div class="wrap"><div class="sec-head">' +
         "<h2>Temporary numbers by country</h2>" +
         "<p>Pick a country to see its sample numbers. Every number is fictional and clearly labelled as a demo — open one to view its sample inbox.</p></div>" +
@@ -912,6 +959,7 @@
       document.getElementById("mainNav").classList.remove("open");
       document.getElementById("menuBtn").setAttribute("aria-expanded", "false");
       bindNumberPage();
+      bindFinder();
     }
 
     function bindNumberPage() {
@@ -941,6 +989,134 @@
         });
       }
     }
+    /* ---------------- Find-by-country tool (home page) ---------------- */
+    var COUNTRY_ALIASES = {
+      usa: ["usa", "us", "america", "united states of america"],
+      uk: ["uk", "britain", "great britain", "england"],
+      netherlands: ["holland"]
+    };
+    function matchCountries(q) {
+      q = q.trim().toLowerCase();
+      if (!q) return [];
+      return COUNTRIES.filter(function (c) {
+        if (c.name.toLowerCase().indexOf(q) !== -1) return true;
+        var al = COUNTRY_ALIASES[c.id] || [];
+        for (var i = 0; i < al.length; i++) if (al[i].indexOf(q) !== -1) return true;
+        return false;
+      });
+    }
+    function finderChips(list) {
+      return '<div class="finder-chips">' + list.map(function (c) {
+        return '<button type="button" class="chip" data-country="' + c.id + '"><span aria-hidden="true">' + c.flag + "</span>" + esc(c.name) + "</button>";
+      }).join("") + "</div>";
+    }
+    function bindFinder() {
+      var input = document.getElementById("countrySearch");
+      if (!input) return;
+      var suggest = document.getElementById("countrySuggest");
+      var results = document.getElementById("finderResults");
+      var activeIdx = -1, current = [], justPicked = false;
+
+      function closeSuggest() {
+        suggest.hidden = true;
+        input.setAttribute("aria-expanded", "false");
+        input.removeAttribute("aria-activedescendant");
+        activeIdx = -1;
+      }
+      function showCountry(c) {
+        results.innerHTML =
+          '<div class="finder-head"><span class="flag" aria-hidden="true">' + c.flag + "</span><strong>" + esc(c.name) + '</strong><span class="badge demo">Demo numbers</span></div>' +
+          '<div class="num-list">' + numbersFor(c).map(numberRow).join("") + "</div>" +
+          '<p class="finder-note">These are fictional sample numbers for demonstration — this demo does not receive real SMS.</p>';
+      }
+      function pick(c) {
+        if (!c) return;
+        justPicked = true;
+        input.value = c.name;
+        closeSuggest();
+        showCountry(c);
+      }
+      function bindChips() {
+        var chips = results.querySelectorAll(".chip");
+        for (var i = 0; i < chips.length; i++) {
+          chips[i].addEventListener("click", function () {
+            pick(countryById(this.getAttribute("data-country")));
+          });
+        }
+      }
+      function openSuggest(matches) {
+        current = matches;
+        suggest.innerHTML = matches.map(function (c, i) {
+          return '<button type="button" role="option" id="csug-' + i + '" data-country="' + c.id + '" aria-selected="false"><span class="flag" aria-hidden="true">' + c.flag + "</span>" + esc(c.name) + '<span class="cnt">' + NUMBERS_PER_COUNTRY + " sample numbers</span></button>";
+        }).join("");
+        suggest.hidden = false;
+        input.setAttribute("aria-expanded", "true");
+        activeIdx = -1;
+        var btns = suggest.querySelectorAll("button");
+        for (var i = 0; i < btns.length; i++) {
+          btns[i].addEventListener("mousedown", function (e) {
+            e.preventDefault();
+            pick(countryById(this.getAttribute("data-country")));
+          });
+        }
+      }
+      function update() {
+        var q = input.value;
+        if (!q.trim()) {
+          closeSuggest();
+          results.innerHTML = '<p class="finder-hint">Start typing above and that country\u2019s demo numbers will appear here. Or pick a country:</p>' + finderChips(COUNTRIES);
+          bindChips();
+          return;
+        }
+        var matches = matchCountries(q);
+        if (matches.length === 0) {
+          closeSuggest();
+          results.innerHTML = '<p class="finder-hint"><strong>No numbers for \u201C' + esc(q.trim()) + '\u201D yet.</strong> This demo currently covers these 10 countries — tap one to see its sample numbers:</p>' + finderChips(COUNTRIES);
+          bindChips();
+          return;
+        }
+        var exact = matches.length === 1 && matches[0].name.toLowerCase() === q.trim().toLowerCase();
+        if (!justPicked && !exact) openSuggest(matches); else closeSuggest();
+        if (matches.length === 1) {
+          showCountry(matches[0]);
+        } else {
+          results.innerHTML = '<p class="finder-hint">' + matches.length + ' countries match \u201C' + esc(q.trim()) + '\u201D — pick one to see its demo numbers:</p>' + finderChips(matches);
+          bindChips();
+        }
+      }
+      input.addEventListener("input", function () { justPicked = false; update(); });
+      input.addEventListener("focus", function () {
+        if (input.value.trim() && !justPicked) {
+          var m = matchCountries(input.value);
+          if (m.length) openSuggest(m);
+        }
+      });
+      input.addEventListener("blur", function () { setTimeout(closeSuggest, 120); });
+      input.addEventListener("keydown", function (e) {
+        var btns = suggest.querySelectorAll("button");
+        if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+          if (suggest.hidden || !btns.length) return;
+          e.preventDefault();
+          activeIdx = e.key === "ArrowDown"
+            ? Math.min(activeIdx + 1, btns.length - 1)
+            : Math.max(activeIdx - 1, 0);
+          for (var i = 0; i < btns.length; i++) {
+            btns[i].classList.toggle("active", i === activeIdx);
+            btns[i].setAttribute("aria-selected", i === activeIdx ? "true" : "false");
+          }
+          if (activeIdx >= 0) input.setAttribute("aria-activedescendant", "csug-" + activeIdx);
+        } else if (e.key === "Enter") {
+          var m = matchCountries(input.value);
+          if (!m.length) return;
+          e.preventDefault();
+          pick(activeIdx >= 0 && current[activeIdx] ? current[activeIdx] : m[0]);
+        } else if (e.key === "Escape") {
+          closeSuggest();
+        }
+      });
+      bindChips();
+    }
+
     function fallbackCopy(text) {
       var ta = document.createElement("textarea");
       ta.value = text;
