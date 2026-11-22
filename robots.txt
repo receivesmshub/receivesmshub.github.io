@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://receivesmshub.github.io/sitemap.xml

@@ -1,0 +1,963 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="icon" href="data:," />
+    <title>Receive SMS Online — Free Temporary Phone Numbers (Demo)</title>
+    <meta name="description" content="ReceiveSMSHub is a free demo of how temporary phone numbers work: browse sample numbers for the USA, UK, Canada, France, Germany and more, and view sample SMS inboxes. All numbers and messages are samples — this demo site does not receive real SMS." />
+    <meta name="keywords" content="receive sms online, temporary phone number, free sms number, virtual number demo, sample phone numbers, verification code demo" />
+    <link rel="canonical" href="https://receivesmshub.github.io/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ReceiveSMSHub" />
+    <meta property="og:title" content="Receive SMS Online — Free Temporary Phone Numbers (Demo)" />
+    <meta property="og:description" content="Browse sample temporary phone numbers from 10 countries and explore sample SMS inboxes. A front-end demo — numbers and messages are samples and no real SMS is received." />
+    <meta property="og:url" content="https://receivesmshub.github.io/" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Receive SMS Online — Free Temporary Phone Numbers (Demo)" />
+    <meta name="twitter:description" content="Sample temporary numbers and sample SMS inboxes from 10 countries. Demo only — no real SMS is received." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ReceiveSMSHub",
+      "url": "https://receivesmshub.github.io/",
+      "description": "A demonstration site showing how temporary phone numbers and online SMS inboxes work, using sample numbers and sample messages only."
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"What is a temporary phone number?","acceptedAnswer":{"@type":"Answer","text":"A temporary phone number is a number you use for a short time instead of your personal number, usually to receive a one-time verification code when signing up for a service. It helps keep your real number private."}},
+        {"@type":"Question","name":"Does ReceiveSMSHub receive real SMS messages?","acceptedAnswer":{"@type":"Answer","text":"No. ReceiveSMSHub is a front-end demonstration. Every number and every message shown here is a sample created for illustration. The numbers are fictional and cannot receive real text messages."}},
+        {"@type":"Question","name":"Are the phone numbers on this site real?","acceptedAnswer":{"@type":"Answer","text":"No. The numbers are fictional samples, many of them built from officially reserved fictional ranges such as the US 555-01XX range. They are not assigned to any person or service."}},
+        {"@type":"Question","name":"How do receive-SMS services work in general?","acceptedAnswer":{"@type":"Answer","text":"A real receive-SMS service operates physical SIM cards or virtual numbers connected to mobile networks. Incoming texts are captured by its systems and displayed on a web page that anyone with the link can open."}},
+        {"@type":"Question","name":"Why do people use temporary numbers?","acceptedAnswer":{"@type":"Answer","text":"Common reasons include protecting a personal number from spam and marketing lists, keeping work and personal sign-ups separate, and testing apps that require phone verification during development."}},
+        {"@type":"Question","name":"Is it safe to receive banking or password-reset codes on a public number?","acceptedAnswer":{"@type":"Answer","text":"No. On a real public receive-SMS service, anyone can read the inbox, so codes for banking, email or any important account could be seen by strangers. Public numbers should only ever be used for low-risk sign-ups."}},
+        {"@type":"Question","name":"Do I need to register or pay to use this demo?","acceptedAnswer":{"@type":"Answer","text":"No. This demonstration is completely free and needs no account, sign-up or payment. You simply browse the sample numbers and sample inboxes."}},
+        {"@type":"Question","name":"Why does the inbox say \"No new messages\" when I refresh?","acceptedAnswer":{"@type":"Answer","text":"Because the inbox is a static sample. Refreshing simulates the checking animation a real service would perform, but no real messages can ever arrive on a fictional number."}},
+        {"@type":"Question","name":"Which countries are included in the demo?","acceptedAnswer":{"@type":"Answer","text":"The demo includes sample numbers for the United States, United Kingdom, Canada, France, Germany, Netherlands, Spain, Sweden, Poland and Australia."}},
+        {"@type":"Question","name":"Can I use these sample numbers to verify an account?","acceptedAnswer":{"@type":"Answer","text":"No. The numbers are fictional and not connected to any mobile network, so no verification code can ever be delivered to them. They exist only to show how such a service looks and works."}}
+      ]
+    }
+    </script>
+    <style>
+      :root {
+        --bg: #f2f6f8;
+        --surface: #ffffff;
+        --surface-2: #e9eff3;
+        --ink: #12222f;
+        --muted: #5a6d7d;
+        --line: #d8e2e9;
+        --accent: #0a6ebd;
+        --accent-ink: #ffffff;
+        --accent-soft: #e3f0fa;
+        --green: #12805c;
+        --green-soft: #e2f4ec;
+        --amber: #9a6206;
+        --amber-soft: #fdf1d7;
+        --radius: 14px;
+        --shadow: 0 1px 2px rgba(18,34,47,.06), 0 8px 24px rgba(18,34,47,.06);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #0a141d;
+          --surface: #111e2a;
+          --surface-2: #182838;
+          --ink: #e7f0f6;
+          --muted: #96aabb;
+          --line: #24384a;
+          --accent: #4da6e8;
+          --accent-ink: #08131d;
+          --accent-soft: #16334a;
+          --green: #3ecf9a;
+          --green-soft: #123528;
+          --amber: #f0b95a;
+          --amber-soft: #3a2c10;
+          --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+        }
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: var(--accent); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      button { font-family: inherit; cursor: pointer; }
+      button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]) { min-height: 2.25rem; }
+      .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+      .wrap { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+
+      /* Header */
+      header.site {
+        position: sticky; top: 0; z-index: 50;
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+      }
+      .header-in { display: flex; align-items: center; gap: 18px; min-height: 62px; }
+      .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; color: var(--ink); letter-spacing: -.02em; }
+      .brand:hover { text-decoration: none; }
+      .brand .mark {
+        width: 34px; height: 34px; border-radius: 9px; flex: none;
+        background: var(--accent); color: var(--accent-ink);
+        display: grid; place-items: center;
+      }
+      .brand .mark svg { width: 19px; height: 19px; }
+      .brand em { font-style: normal; color: var(--accent); }
+      nav.main { margin-left: auto; display: flex; gap: 4px; align-items: center; }
+      nav.main a {
+        color: var(--ink); font-weight: 600; font-size: .95rem;
+        padding: 9px 13px; border-radius: 9px; min-height: 2.25rem;
+        display: inline-flex; align-items: center;
+      }
+      nav.main a:hover { background: var(--surface-2); text-decoration: none; }
+      .menu-btn {
+        display: none; margin-left: auto;
+        background: var(--surface-2); border: 1px solid var(--line);
+        border-radius: 9px; width: 42px; height: 42px;
+        align-items: center; justify-content: center; color: var(--ink);
+      }
+      .menu-btn svg { width: 20px; height: 20px; }
+      @media (max-width: 760px) {
+        nav.main { display: none; position: absolute; top: 62px; left: 0; right: 0; background: var(--surface); border-bottom: 1px solid var(--line); flex-direction: column; align-items: stretch; padding: 10px 16px 16px; gap: 2px; }
+        nav.main.open { display: flex; }
+        nav.main a { padding: 11px 12px; }
+        .menu-btn { display: inline-flex; }
+      }
+
+      /* Demo notice bar */
+      .demo-bar {
+        background: var(--amber-soft); color: var(--amber);
+        border-bottom: 1px solid var(--line);
+        font-size: .88rem; font-weight: 600;
+      }
+      .demo-bar .wrap { display: flex; gap: 9px; align-items: flex-start; padding-top: 9px; padding-bottom: 9px; }
+      .demo-bar svg { width: 17px; height: 17px; flex: none; margin-top: 2px; }
+
+      /* Hero */
+      .hero { padding: 52px 0 40px; }
+      .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 36px; align-items: center; }
+      @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+      .hero h1 { font-size: clamp(1.9rem, 4.4vw, 2.9rem); line-height: 1.14; letter-spacing: -.03em; margin: 0 0 16px; font-weight: 800; }
+      .hero p.lede { font-size: 1.08rem; color: var(--muted); margin: 0 0 22px; max-width: 34rem; }
+      .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+      .btn {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: var(--accent); color: var(--accent-ink);
+        font-weight: 700; font-size: .97rem;
+        padding: 11px 20px; border-radius: 10px; border: 1px solid transparent;
+        min-height: 2.75rem;
+      }
+      .btn:hover { text-decoration: none; filter: brightness(1.07); }
+      .btn.ghost { background: var(--surface); color: var(--ink); border-color: var(--line); }
+      .btn.ghost:hover { background: var(--surface-2); filter: none; }
+      .btn.small { padding: 7px 14px; min-height: 2.25rem; font-size: .9rem; }
+      .hero-points { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 24px; font-size: .9rem; font-weight: 600; color: var(--muted); }
+      .hero-points span { display: inline-flex; align-items: center; gap: 7px; }
+      .hero-points svg { width: 16px; height: 16px; color: var(--green); }
+
+      /* Phone mock */
+      .phone {
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: 22px; box-shadow: var(--shadow);
+        padding: 18px; max-width: 400px; margin: 0 auto; width: 100%;
+      }
+      .phone-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+      .phone-head .num { font-weight: 700; font-size: 1.02rem; }
+      .phone-msg { display: flex; gap: 11px; padding: 13px 2px; border-bottom: 1px solid var(--line); }
+      .phone-msg:last-child { border-bottom: 0; }
+      .avatar {
+        width: 38px; height: 38px; border-radius: 50%; flex: none;
+        background: var(--accent-soft); color: var(--accent);
+        display: grid; place-items: center; font-weight: 800; font-size: .85rem;
+      }
+      .phone-msg .from { font-weight: 700; font-size: .92rem; display: flex; justify-content: space-between; gap: 8px; }
+      .phone-msg .when { color: var(--muted); font-weight: 500; font-size: .78rem; white-space: nowrap; }
+      .phone-msg .text { font-size: .9rem; color: var(--muted); }
+      .phone-msg .text b { color: var(--ink); }
+
+      /* Badges */
+      .badge {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: .74rem; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+        padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+      }
+      .badge.demo { background: var(--amber-soft); color: var(--amber); }
+      .badge.live { background: var(--green-soft); color: var(--green); }
+      .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
+
+      /* Sections */
+      section.block { padding: 40px 0 8px; }
+      .sec-head { margin-bottom: 22px; }
+      .sec-head h2 { font-size: 1.55rem; letter-spacing: -.02em; margin: 0 0 6px; font-weight: 800; }
+      .sec-head p { color: var(--muted); margin: 0; max-width: 44rem; }
+
+      /* Country grid */
+      .country-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(195px, 1fr)); gap: 14px; }
+      .country-card {
+        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 18px; display: flex; flex-direction: column; gap: 4px;
+        color: var(--ink); box-shadow: var(--shadow);
+      }
+      .country-card:hover { text-decoration: none; border-color: var(--accent); }
+      .country-card .flag { font-size: 1.9rem; line-height: 1; }
+      .country-card .cname { font-weight: 800; font-size: 1.02rem; margin-top: 6px; }
+      .country-card .ccount { color: var(--muted); font-size: .88rem; }
+      .country-card .cgo { color: var(--accent); font-weight: 700; font-size: .88rem; margin-top: 8px; }
+
+      /* Number rows */
+      .num-list { display: flex; flex-direction: column; gap: 12px; }
+      .num-row {
+        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 16px 18px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+        box-shadow: var(--shadow);
+      }
+      .num-row .flag { font-size: 1.6rem; }
+      .num-row .ninfo { min-width: 0; }
+      .num-row .nnum { font-weight: 700; font-size: 1.08rem; letter-spacing: .01em; }
+      .num-row .nmeta { color: var(--muted); font-size: .85rem; }
+      .num-row .spacer { margin-left: auto; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+      @media (max-width: 560px) {
+        .num-row .spacer { margin-left: 0; width: 100%; }
+        .num-row .spacer .btn { flex: 1; justify-content: center; }
+      }
+
+      /* Steps / benefits */
+      .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+      @media (max-width: 820px) { .steps { grid-template-columns: 1fr; } }
+      .step, .benefit {
+        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 22px; box-shadow: var(--shadow);
+      }
+      .step .n {
+        width: 38px; height: 38px; border-radius: 10px;
+        background: var(--accent); color: var(--accent-ink);
+        display: grid; place-items: center; font-weight: 800; font-size: 1.05rem; margin-bottom: 12px;
+      }
+      .step h3, .benefit h3 { margin: 0 0 7px; font-size: 1.05rem; }
+      .step p, .benefit p { margin: 0; color: var(--muted); font-size: .94rem; }
+      .benefits { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      @media (max-width: 820px) { .benefits { grid-template-columns: 1fr; } }
+      .benefit .ic {
+        width: 40px; height: 40px; border-radius: 10px; margin-bottom: 12px;
+        background: var(--accent-soft); color: var(--accent); display: grid; place-items: center;
+      }
+      .benefit .ic svg { width: 21px; height: 21px; }
+
+      /* Article cards */
+      .art-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+      @media (max-width: 900px) { .art-grid { grid-template-columns: 1fr; } }
+      .art-card {
+        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+        padding: 22px; color: var(--ink); display: flex; flex-direction: column; gap: 8px; box-shadow: var(--shadow);
+      }
+      .art-card:hover { text-decoration: none; border-color: var(--accent); }
+      .art-card .tag { color: var(--accent); font-weight: 800; font-size: .76rem; letter-spacing: .06em; text-transform: uppercase; }
+      .art-card h3 { margin: 0; font-size: 1.08rem; line-height: 1.35; }
+      .art-card p { margin: 0; color: var(--muted); font-size: .92rem; flex: 1; }
+      .art-card .meta { color: var(--muted); font-size: .82rem; font-weight: 600; }
+
+      /* FAQ */
+      .faq-list { display: flex; flex-direction: column; gap: 10px; }
+      details.faq {
+        background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow);
+      }
+      details.faq summary {
+        cursor: pointer; font-weight: 700; padding: 15px 18px; list-style: none;
+        display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 3rem;
+      }
+      details.faq summary::-webkit-details-marker { display: none; }
+      details.faq summary .chev { color: var(--muted); transition: transform .2s; flex: none; display: inline-flex; }
+      details.faq summary .chev svg { width: 18px; height: 18px; }
+      details.faq[open ] summary .chev { transform: rotate(180deg); }
+      details.faq .ans { padding: 0 18px 16px; color: var(--muted); font-size: .95rem; }
+      details.faq .ans p { margin: 0; }
+
+      /* Page / prose */
+      .page-head { padding: 38px 0 6px; }
+      .page-head h1 { font-size: clamp(1.6rem, 3.6vw, 2.2rem); letter-spacing: -.02em; margin: 0 0 8px; font-weight: 800; line-height: 1.2; }
+      .page-head p { color: var(--muted); margin: 0; max-width: 46rem; }
+      .crumbs { font-size: .88rem; color: var(--muted); margin-bottom: 12px; font-weight: 600; }
+      .crumbs a { color: var(--muted); }
+      .crumbs a:hover { color: var(--accent); }
+      .note {
+        background: var(--amber-soft); color: var(--amber); border: 1px solid var(--line);
+        border-radius: 12px; padding: 14px 16px; font-size: .93rem; font-weight: 600;
+        display: flex; gap: 10px; align-items: flex-start; margin: 18px 0;
+      }
+      .note svg { width: 18px; height: 18px; flex: none; margin-top: 2px; }
+      .prose { max-width: 46rem; padding-bottom: 10px; }
+      .prose h2 { font-size: 1.3rem; margin: 28px 0 8px; letter-spacing: -.01em; }
+      .prose h3 { font-size: 1.08rem; margin: 22px 0 6px; }
+      .prose p { color: var(--muted); margin: 0 0 14px; }
+      .prose ul, .prose ol { color: var(--muted); margin: 0 0 14px; padding-left: 22px; }
+      .prose li { margin-bottom: 6px; }
+      .prose strong { color: var(--ink); }
+
+      /* Inbox */
+      .inbox {
+        background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+        box-shadow: var(--shadow); overflow: hidden; margin-top: 18px;
+      }
+      .inbox-head {
+        display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+        padding: 15px 18px; border-bottom: 1px solid var(--line); background: var(--surface-2);
+      }
+      .inbox-head .t { font-weight: 800; }
+      .inbox-head .spacer { margin-left: auto; display: flex; gap: 8px; }
+      .msg { display: flex; gap: 12px; padding: 16px 18px; border-bottom: 1px solid var(--line); }
+      .msg:last-child { border-bottom: 0; }
+      .msg .body { min-width: 0; flex: 1; }
+      .msg .from { font-weight: 700; display: flex; justify-content: space-between; gap: 10px; }
+      .msg .when { color: var(--muted); font-size: .8rem; font-weight: 500; white-space: nowrap; }
+      .msg .text { color: var(--muted); font-size: .94rem; margin-top: 2px; }
+      .msg .text b { color: var(--ink); letter-spacing: .04em; }
+      .refresh-status { padding: 12px 18px; font-size: .9rem; font-weight: 600; color: var(--muted); display: none; border-bottom: 1px solid var(--line); align-items: center; gap: 9px; }
+      .refresh-status.show { display: flex; }
+      .spinner {
+        width: 16px; height: 16px; border-radius: 50%; flex: none;
+        border: 2px solid var(--line); border-top-color: var(--accent);
+        animation: spin .7s linear infinite;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce) {
+        .spinner { animation-duration: 2s; }
+        html { scroll-behavior: auto; }
+      }
+      .toast {
+        position: fixed; left: 50%; bottom: 22px; transform: translateX(-50%) translateY(20px);
+        background: var(--ink); color: var(--bg); font-weight: 700; font-size: .92rem;
+        padding: 11px 18px; border-radius: 10px; opacity: 0; pointer-events: none;
+        transition: opacity .25s, transform .25s; z-index: 100; max-width: calc(100vw - 32px); text-align: center;
+      }
+      .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+      /* Footer */
+      footer.site { margin-top: 56px; border-top: 1px solid var(--line); background: var(--surface); }
+      .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 26px; padding: 36px 0 8px; }
+      @media (max-width: 820px) { .foot-grid { grid-template-columns: 1fr 1fr; } }
+      @media (max-width: 480px) { .foot-grid { grid-template-columns: 1fr; } }
+      footer.site h4 { margin: 0 0 10px; font-size: .95rem; }
+      footer.site ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+      footer.site ul a { color: var(--muted); font-size: .92rem; display: inline-flex; min-height: 1.6rem; align-items: center; }
+      footer.site ul a:hover { color: var(--accent); }
+      footer.site .about-txt { color: var(--muted); font-size: .92rem; max-width: 20rem; }
+      .foot-bottom {
+        border-top: 1px solid var(--line); margin-top: 22px; padding: 16px 0 22px;
+        display: flex; gap: 10px; flex-wrap: wrap; justify-content: space-between;
+        color: var(--muted); font-size: .88rem;
+      }
+      main { min-height: 55vh; }
+    </style>
+  </head>
+  <body>
+    <header class="site">
+      <div class="wrap header-in">
+        <a class="brand" href="#/">
+          <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
+          Receive<em>SMS</em>Hub
+        </a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <nav class="main" id="mainNav">
+          <a href="#/">Home</a>
+          <a href="#/numbers">Numbers</a>
+          <a href="#/articles">Articles</a>
+          <a href="#/faq">FAQ</a>
+          <a href="#/about">About</a>
+          <a href="#/contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="demo-bar" role="note">
+      <div class="wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <span>Demo website: every phone number and text message shown here is a fictional sample. This site does not receive real SMS — it demonstrates how receive-SMS services work.</span>
+      </div>
+    </div>
+
+    <main id="app"></main>
+
+    <footer class="site">
+      <div class="wrap">
+        <div class="foot-grid">
+          <div>
+            <h4>ReceiveSMSHub</h4>
+            <p class="about-txt">A free demonstration of how temporary phone numbers and online SMS inboxes work — with sample numbers and sample messages from 10 countries.</p>
+          </div>
+          <div>
+            <h4>Numbers</h4>
+            <ul>
+              <li><a href="#/country/usa">United States</a></li>
+              <li><a href="#/country/uk">United Kingdom</a></li>
+              <li><a href="#/country/canada">Canada</a></li>
+              <li><a href="#/country/germany">Germany</a></li>
+              <li><a href="#/numbers">All countries</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Learn</h4>
+            <ul>
+              <li><a href="#/article/what-is-a-temporary-phone-number">What is a temporary number?</a></li>
+              <li><a href="#/article/how-to-receive-sms-online">How to receive SMS online</a></li>
+              <li><a href="#/article/temporary-vs-real-number-privacy">Temporary vs real number</a></li>
+              <li><a href="#/faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Site</h4>
+            <ul>
+              <li><a href="#/about">About</a></li>
+              <li><a href="#/contact">Contact</a></li>
+              <li><a href="#/privacy">Privacy Policy</a></li>
+              <li><a href="#/terms">Terms of Use</a></li>
+              <li><a href="#/disclaimer">Disclaimer</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="foot-bottom">
+          <span>© 2026 ReceiveSMSHub. All rights reserved.</span>
+          <span>Demo site — sample numbers &amp; sample messages only. No real SMS is received.</span>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+    "use strict";
+
+    /* ---------------- Data ----------------
+       All numbers below are fictional samples. US numbers use the reserved
+       555-01XX fictional range; UK numbers use the Ofcom-reserved
+       020 7946 0XXX fictional range. Others follow the same demo pattern. */
+
+    var COUNTRIES = [
+      { id: "usa",         name: "United States",  flag: "🇺🇸", code: "+1",   fmt: function(i){ return "+1 (202) 555-01" + pad(i); } },
+      { id: "uk",          name: "United Kingdom", flag: "🇬🇧", code: "+44",  fmt: function(i){ return "+44 20 7946 0" + (100 + i * 7); } },
+      { id: "canada",      name: "Canada",         flag: "🇨🇦", code: "+1",   fmt: function(i){ return "+1 (416) 555-01" + pad(i); } },
+      { id: "france",      name: "France",         flag: "🇫🇷", code: "+33",  fmt: function(i){ return "+33 1 84 80 " + (10 + i * 3) + " " + (20 + i * 5); } },
+      { id: "germany",     name: "Germany",        flag: "🇩🇪", code: "+49",  fmt: function(i){ return "+49 30 555 " + (100 + i * 11) + " " + (40 + i * 2); } },
+      { id: "netherlands", name: "Netherlands",    flag: "🇳🇱", code: "+31",  fmt: function(i){ return "+31 20 555 " + (1000 + i * 137); } },
+      { id: "spain",       name: "Spain",          flag: "🇪🇸", code: "+34",  fmt: function(i){ return "+34 911 555 " + (100 + i * 23); } },
+      { id: "sweden",      name: "Sweden",         flag: "🇸🇪", code: "+46",  fmt: function(i){ return "+46 8 555 " + (100 + i * 17); } },
+      { id: "poland",      name: "Poland",         flag: "🇵🇱", code: "+48",  fmt: function(i){ return "+48 22 555 " + (10 + i * 4) + " " + (30 + i * 6); } },
+      { id: "australia",   name: "Australia",      flag: "🇦🇺", code: "+61",  fmt: function(i){ return "+61 2 5555 " + (1000 + i * 211); } }
+    ];
+    var NUMBERS_PER_COUNTRY = 8;
+
+    function pad(n) { return (n < 10 ? "0" : "") + n; }
+
+    function countryById(id) {
+      for (var i = 0; i < COUNTRIES.length; i++) if (COUNTRIES[i].id === id) return COUNTRIES[i];
+      return null;
+    }
+    function numbersFor(country) {
+      var list = [];
+      for (var i = 0; i < NUMBERS_PER_COUNTRY; i++) {
+        list.push({
+          id: country.id + "-" + (i + 1),
+          country: country,
+          display: country.fmt(i),
+          added: ["2 days ago", "5 days ago", "1 week ago", "1 week ago", "2 weeks ago", "2 weeks ago", "3 weeks ago", "1 month ago"][i],
+          busy: i % 3 === 2
+        });
+      }
+      return list;
+    }
+    function findNumber(numId) {
+      for (var c = 0; c < COUNTRIES.length; c++) {
+        var list = numbersFor(COUNTRIES[c]);
+        for (var i = 0; i < list.length; i++) if (list[i].id === numId) return list[i];
+      }
+      return null;
+    }
+
+    /* Sample message pool — generic senders, illustrative texts only. */
+    var SENDERS = [
+      { name: "VerifyService", texts: [
+        "Your verification code is <b>482 913</b>. It expires in 10 minutes. Never share this code with anyone.",
+        "Use <b>730 285</b> to confirm your new account. If this wasn't you, you can ignore this message."
+      ]},
+      { name: "CloudMail", texts: [
+        "CloudMail: <b>519 204</b> is your sign-in code. Enter it to finish logging in on your new device.",
+        "Your CloudMail security code is <b>864 117</b>. This code is valid for 15 minutes."
+      ]},
+      { name: "ShopNow", texts: [
+        "ShopNow: your order #88412 has shipped and is on its way. Track it any time in the app.",
+        "ShopNow flash sale: up to 40% off selected items today only. Reply STOP to opt out."
+      ]},
+      { name: "RideGo", texts: [
+        "RideGo: your driver is arriving in 3 minutes. Meet at the pickup point shown in the app.",
+        "Your RideGo confirmation code is <b>204 668</b>. Share it with your driver to start the trip."
+      ]},
+      { name: "ChatApp", texts: [
+        "Your ChatApp code is <b>391 540</b>. Enter it in the app to verify your phone number.",
+        "ChatApp: a login was requested for your account. Your one-time code is <b>627 048</b>."
+      ]},
+      { name: "GameZone", texts: [
+        "GameZone: verify your account with code <b>155 902</b> to claim your welcome bonus.",
+        "Your GameZone tournament starts in 1 hour. Good luck!"
+      ]},
+      { name: "FoodDash", texts: [
+        "FoodDash: your food is out for delivery and should arrive by 19:40. Enjoy your meal!",
+        "FoodDash code <b>908 331</b>: use it to confirm your delivery address."
+      ]},
+      { name: "Streamly", texts: [
+        "Streamly: a new device signed in to your account. If this wasn't you, reset your password.",
+        "Your Streamly verification code is <b>443 726</b>. It expires in 10 minutes."
+      ]}
+    ];
+    var WHENS = ["4 min ago", "26 min ago", "1 hour ago", "3 hours ago", "Yesterday, 18:22"];
+
+    function messagesFor(numId) {
+      var seed = 0;
+      for (var i = 0; i < numId.length; i++) seed += numId.charCodeAt(i) * (i + 3);
+      var count = 3 + (seed % 3); /* 3–5 messages */
+      var out = [];
+      for (var k = 0; k < count; k++) {
+        var s = SENDERS[(seed + k * 3) % SENDERS.length];
+        out.push({ from: s.name, text: s.texts[(seed + k) % s.texts.length], when: WHENS[k] });
+      }
+      return out;
+    }
+
+    var ARTICLES = [
+      {
+        id: "what-is-a-temporary-phone-number",
+        tag: "Basics",
+        title: "What Is a Temporary Phone Number and How Does It Work?",
+        excerpt: "Temporary numbers let you receive a verification text without handing out your personal number. Here is what they are, how the technology behind them works, and where their limits are.",
+        minutes: 5,
+        body:
+          "<p>A temporary phone number is a number you borrow for a short period instead of using your own. Most people meet the idea when a website asks for a mobile number during sign-up: rather than typing in a personal number that will live in that company's database forever, you use a temporary one, read the verification code it receives, and move on.</p>" +
+          "<h2>Two kinds of temporary numbers</h2>" +
+          "<p><strong>Public receive-SMS numbers</strong> are shared numbers published on a website. Anyone can open the matching inbox page and read every message that arrives. They cost nothing, need no registration, and are exactly what this demo imitates with sample data.</p>" +
+          "<p><strong>Private rented numbers</strong> are assigned to one customer at a time by a paid service. Only that customer sees the inbox, which makes them suitable for slightly more sensitive uses — though still not for banking or primary email accounts.</p>" +
+          "<h2>How the receiving actually works</h2>" +
+          "<p>Behind a real receive-SMS service sits hardware or a cloud telephony account holding many numbers at once. When a text arrives, the mobile network delivers it to the operator's system, which matches it to a number and stores the message. The website then simply displays whatever has been stored for that number. There is no phone ringing anywhere — the 'inbox' is a database view.</p>" +
+          "<h2>Why people use them</h2>" +
+          "<ul><li><strong>Privacy:</strong> your real number stays out of marketing databases and data breaches.</li><li><strong>Spam control:</strong> one-off sign-ups cannot follow you with promotional texts.</li><li><strong>Testing:</strong> developers can check sign-up flows that require phone verification.</li><li><strong>Travelling and second accounts:</strong> a local-format number for a service in another country.</li></ul>" +
+          "<h2>The honest limits</h2>" +
+          "<p>Public numbers are public: anyone can read the codes sent to them, and many large services block well-known temporary ranges entirely. A temporary number can also be retired or reassigned at any time, so never rely on one to recover an important account later. Used with those limits in mind, though, they are a simple and effective privacy tool.</p>" +
+          "<p><em>Note: ReceiveSMSHub is a demonstration. The numbers and messages on this site are samples and cannot receive real texts.</em></p>"
+      },
+      {
+        id: "how-to-receive-sms-online",
+        tag: "Guide",
+        title: "How to Receive SMS Online: Step-by-Step Guide",
+        excerpt: "From picking a country to reading your code: the complete walkthrough of how receiving SMS online works, using this demo so you can follow every step safely.",
+        minutes: 4,
+        body:
+          "<p>Receiving an SMS online means reading a text message in your browser instead of on a handset. The flow is the same on almost every receive-SMS service, and you can practise it here with our sample numbers. Here is the full sequence.</p>" +
+          "<h2>Step 1: Choose a country</h2>" +
+          "<p>Start by picking the country whose number format you need. Some services only accept numbers from particular regions, so match the country to the service you are signing up for. On this demo's home page, the country grid lists ten countries with the number of sample numbers available for each.</p>" +
+          "<h2>Step 2: Pick a number</h2>" +
+          "<p>Open the country page and choose one of the listed numbers. On a real service, fresher numbers tend to work better because heavily used ones get blocked by popular apps. Copy the number exactly as shown, including the country code.</p>" +
+          "<h2>Step 3: Enter the number on the service</h2>" +
+          "<p>Paste the number into the sign-up or verification form of the service you are joining and request the code. On a real network the text usually arrives within a few seconds, though delays of a couple of minutes are normal.</p>" +
+          "<h2>Step 4: Read the code in the online inbox</h2>" +
+          "<p>Return to the number's inbox page and look for the newest message from that service. Type the code into the sign-up form promptly — most codes expire within 10 to 15 minutes. In this demo, the inbox shows sample messages and the refresh button simulates the checking step.</p>" +
+          "<h2>Step 5: Know when not to use one</h2>" +
+          "<p>Stop and use your real number (or a private rented number) for anything involving money, your main email account, or long-term account recovery. Public inboxes can be read by anyone, and a number you do not control can disappear without warning.</p>" +
+          "<p><em>Reminder: every number and message on ReceiveSMSHub is a fictional sample provided so you can learn the process risk-free.</em></p>"
+      },
+      {
+        id: "temporary-vs-real-number-privacy",
+        tag: "Privacy",
+        title: "Temporary Numbers vs Your Real Number: Privacy Compared",
+        excerpt: "Your phone number is one of the most linkable identifiers you own. We compare what happens to your privacy when you hand out your real number versus a temporary one.",
+        minutes: 6,
+        body:
+          "<p>A phone number looks harmless — ten or eleven digits — but it is one of the most powerful identifiers in modern data collection. Unlike an email address, most people keep the same number for years, and it is tied to their name, address, bank and messaging accounts. That makes the choice between your real number and a temporary one a genuine privacy decision.</p>" +
+          "<h2>What happens when you share your real number</h2>" +
+          "<p>Every sign-up adds your number to another database. Those databases are merged, sold and, too often, breached. A leaked number invites spam calls, phishing texts that address you by name, and SIM-swap attempts against accounts that use the number for recovery. Because the number rarely changes, the exposure compounds for years.</p>" +
+          "<h2>What a temporary number changes</h2>" +
+          "<p>A temporary number breaks the chain. The service gets a working number for its verification step, but the number leads nowhere: not to your name, your bank or your messaging identity. If it ends up on a spam list, the list is useless. For one-off sign-ups — a coupon, a forum, a free trial — that trade is almost all upside.</p>" +
+          "<h2>Where the real number still wins</h2>" +
+          "<ul><li><strong>Account recovery:</strong> if you lose access, a number you control permanently is the safest way back in.</li><li><strong>Banking and finance:</strong> financial codes should never travel to an inbox others can read.</li><li><strong>Acceptance:</strong> some services detect and refuse known temporary ranges.</li><li><strong>Two-factor authentication:</strong> ongoing 2FA needs a number that will still be yours next year.</li></ul>" +
+          "<h2>A practical rule of thumb</h2>" +
+          "<p>Ask one question: <strong>would it hurt if a stranger read this message, or if I lost this number tomorrow?</strong> If the answer is no, a temporary number is the privacy-friendly choice. If the answer is yes, use your real number and protect it with a strong account password instead.</p>" +
+          "<p><em>ReceiveSMSHub is an educational demo: its sample numbers cannot receive messages, but the privacy principles above apply to real services.</em></p>"
+      }
+    ];
+    function articleById(id) {
+      for (var i = 0; i < ARTICLES.length; i++) if (ARTICLES[i].id === id) return ARTICLES[i];
+      return null;
+    }
+
+    var FAQS = [
+      { q: "What is a temporary phone number?", a: "A temporary phone number is a number you use for a short time instead of your personal number, usually to receive a one-time verification code when signing up for a service. It helps keep your real number private and out of marketing databases." },
+      { q: "Does ReceiveSMSHub receive real SMS messages?", a: "No. ReceiveSMSHub is a front-end demonstration. Every number and every message shown here is a sample created for illustration. The numbers are fictional and cannot receive real text messages." },
+      { q: "Are the phone numbers on this site real?", a: "No. The numbers are fictional samples — the US numbers, for example, use the officially reserved 555-01XX fictional range, and the UK numbers use Ofcom's reserved 020 7946 range. They are not assigned to any person or company." },
+      { q: "How do receive-SMS services work in general?", a: "A real receive-SMS service operates SIM banks or cloud telephony accounts holding many numbers. When a text arrives, the mobile network delivers it to the service's system, which stores it and shows it on a web inbox page for that number." },
+      { q: "Why do people use temporary numbers?", a: "Common reasons include protecting a personal number from spam and marketing lists, keeping one-off sign-ups separate from a main number, and testing apps whose sign-up flow requires phone verification." },
+      { q: "Is it safe to receive banking or password-reset codes on a public number?", a: "No. On a real public receive-SMS service, anyone can open the inbox and read the messages, so codes for banking, email or any important account could be seen by strangers. Public numbers should only ever be used for low-risk sign-ups." },
+      { q: "Do I need to register or pay to use this demo?", a: "No. This demonstration is completely free and needs no account, sign-up or payment. You simply browse the sample numbers and their sample inboxes." },
+      { q: "Why does the inbox say \u201CNo new messages\u201D when I refresh?", a: "Because the inbox is a static sample. Refreshing plays the checking animation a real service would perform, but no real messages can ever arrive on a fictional number, so the sample messages stay exactly the same." },
+      { q: "Which countries are included in the demo?", a: "The demo includes sample numbers for ten countries: the United States, United Kingdom, Canada, France, Germany, Netherlands, Spain, Sweden, Poland and Australia." },
+      { q: "Can I use these sample numbers to verify an account?", a: "No. The numbers are fictional and not connected to any mobile network, so no verification code can ever be delivered to them. They exist only to show how a receive-SMS service looks and works." }
+    ];
+
+    /* ---------------- Helpers ---------------- */
+    var app = document.getElementById("app");
+    var toastEl = document.getElementById("toast");
+    var toastTimer = null;
+    function toast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toastEl.classList.remove("show"); }, 2600);
+    }
+    function esc(s) {
+      return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+    var ICON_WARN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+    var ICON_CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+    var ICON_CHEV = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
+
+    function demoNote(text) {
+      return '<div class="note">' + ICON_WARN + "<span>" + text + "</span></div>";
+    }
+    function statusBadge(num) {
+      return '<span class="badge demo">Demo number</span> ' +
+        (num.busy
+          ? '<span class="badge live"><span class="dot"></span>Sample · busy</span>'
+          : '<span class="badge live"><span class="dot"></span>Sample · active</span>');
+    }
+    function numberRow(num) {
+      return '<div class="num-row">' +
+        '<span class="flag" aria-hidden="true">' + num.country.flag + "</span>" +
+        '<div class="ninfo"><div class="nnum mono">' + esc(num.display) + '</div>' +
+        '<div class="nmeta">' + esc(num.country.name) + " · Added " + esc(num.added) + "</div></div>" +
+        '<div class="spacer">' + statusBadge(num) +
+        '<a class="btn small" href="#/number/' + num.id + '">View messages</a></div></div>';
+    }
+    function articleCard(a) {
+      return '<a class="art-card" href="#/article/' + a.id + '">' +
+        '<span class="tag">' + esc(a.tag) + "</span><h3>" + esc(a.title) + "</h3><p>" + esc(a.excerpt) + "</p>" +
+        '<span class="meta">' + a.minutes + " min read</span></a>";
+    }
+    function faqItem(f, open) {
+      return '<details class="faq"' + (open ? " open" : "") + "><summary><span>" + esc(f.q) +
+        '</span><span class="chev">' + ICON_CHEV + '</span></summary><div class="ans"><p>' + esc(f.a) + "</p></div></details>";
+    }
+
+    /* ---------------- Views ---------------- */
+    function viewHome() {
+      var featured = [findNumber("usa-1"), findNumber("uk-2"), findNumber("canada-1"), findNumber("germany-3")];
+      var countries = COUNTRIES.map(function (c) {
+        return '<a class="country-card" href="#/country/' + c.id + '">' +
+          '<span class="flag" aria-hidden="true">' + c.flag + '</span>' +
+          '<span class="cname">' + esc(c.name) + "</span>" +
+          '<span class="ccount">' + NUMBERS_PER_COUNTRY + " sample numbers available</span>" +
+          '<span class="cgo">Browse numbers →</span></a>';
+      }).join("");
+      var heroMsgs = messagesFor("usa-1").slice(0, 3).map(function (m) {
+        return '<div class="phone-msg"><div class="avatar" aria-hidden="true">' + esc(m.from.slice(0, 2).toUpperCase()) +
+          '</div><div style="min-width:0;flex:1"><div class="from"><span>' + esc(m.from) + '</span><span class="when">' + esc(m.when) +
+          '</span></div><div class="text">' + m.text + "</div></div></div>";
+      }).join("");
+
+      return '' +
+      '<section class="hero"><div class="wrap hero-grid"><div>' +
+        "<h1>Receive SMS online with a temporary phone number</h1>" +
+        "<p class=\"lede\">Temporary numbers let you receive verification codes in your browser instead of on your personal phone — keeping your real number private and out of spam lists. Explore how it works with our free sample numbers and sample inboxes.</p>" +
+        '<div class="hero-cta"><a class="btn" href="#/numbers">Browse sample numbers</a>' +
+        '<a class="btn ghost" href="#/article/how-to-receive-sms-online">How it works</a></div>' +
+        '<div class="hero-points">' +
+          "<span>" + ICON_CHECK + " No sign-up needed</span>" +
+          "<span>" + ICON_CHECK + " 10 countries</span>" +
+          "<span>" + ICON_CHECK + " 100% free demo</span>" +
+        "</div></div>" +
+        '<div class="phone" aria-label="Preview of a sample SMS inbox">' +
+          '<div class="phone-head"><span class="num mono">+1 (202) 555-0100</span><span class="badge demo">Sample inbox</span></div>' +
+          heroMsgs +
+        "</div></div></section>" +
+
+      '<section class="block"><div class="wrap"><div class="sec-head">' +
+        "<h2>Temporary numbers by country</h2>" +
+        "<p>Pick a country to see its sample numbers. Every number is fictional and clearly labelled as a demo — open one to view its sample inbox.</p></div>" +
+        '<div class="country-grid">' + countries + "</div></div></section>" +
+
+      '<section class="block"><div class="wrap"><div class="sec-head">' +
+        "<h2>Featured sample numbers</h2>" +
+        "<p>A few of the most-viewed demo numbers right now. Open one to see the sample messages it has \u201Creceived\u201D.</p></div>" +
+        '<div class="num-list">' + featured.map(numberRow).join("") + "</div></div></section>" +
+
+      '<section class="block"><div class="wrap"><div class="sec-head">' +
+        "<h2>How it works</h2><p>Three steps, the same on any receive-SMS service.</p></div>" +
+        '<div class="steps">' +
+          '<div class="step"><div class="n">1</div><h3>Pick a number</h3><p>Choose a country and copy one of its temporary numbers — no account, no payment, no SIM card.</p></div>' +
+          '<div class="step"><div class="n">2</div><h3>Use it to sign up</h3><p>Enter the number wherever a verification text is required, and the service sends its code to that number.</p></div>' +
+          '<div class="step"><div class="n">3</div><h3>Read the code online</h3><p>Open the number\u2019s inbox page in your browser and read the incoming message and its code.</p></div>' +
+        "</div></div></section>" +
+
+      '<section class="block"><div class="wrap"><div class="sec-head">' +
+        "<h2>Why use a temporary number?</h2></div>" +
+        '<div class="benefits">' +
+          '<div class="benefit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Protect your privacy</h3><p>Your personal number is linked to your name, bank and messaging apps. A temporary number keeps it out of sign-up forms and the databases behind them.</p></div>' +
+          '<div class="benefit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.9" y1="4.9" x2="19.1" y2="19.1"/></svg></div><h3>Stop spam at the source</h3><p>One-off sign-ups can\u2019t follow you with marketing texts and robocalls when the number you gave them isn\u2019t really yours.</p></div>' +
+          '<div class="benefit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><h3>Instant, in your browser</h3><p>There is nothing to install and no handset involved — the inbox is a web page, so codes can be read from any device in seconds.</p></div>' +
+          '<div class="benefit"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div><h3>No commitment</h3><p>Use a number once and walk away. Nothing is tied to your identity, and there is no contract or subscription to cancel.</p></div>' +
+        "</div></div></section>" +
+
+      '<section class="block"><div class="wrap"><div class="sec-head">' +
+        "<h2>Latest articles</h2><p>Guides and explainers from the ReceiveSMSHub team.</p></div>" +
+        '<div class="art-grid">' + ARTICLES.map(articleCard).join("") + "</div></div></section>" +
+
+      '<section class="block"><div class="wrap"><div class="sec-head">' +
+        "<h2>Frequently asked questions</h2></div>" +
+        '<div class="faq-list">' + FAQS.slice(0, 5).map(function (f, i) { return faqItem(f, i === 0); }).join("") + "</div>" +
+        '<p style="margin-top:16px"><a class="btn ghost" href="#/faq">See all questions</a></p>' +
+      "</div></section>";
+    }
+
+    function viewNumbersIndex() {
+      var cards = COUNTRIES.map(function (c) {
+        return '<a class="country-card" href="#/country/' + c.id + '">' +
+          '<span class="flag" aria-hidden="true">' + c.flag + '</span>' +
+          '<span class="cname">' + esc(c.name) + "</span>" +
+          '<span class="ccount">' + NUMBERS_PER_COUNTRY + " sample numbers available</span>" +
+          '<span class="cgo">Browse numbers →</span></a>';
+      }).join("");
+      return '<div class="wrap"><div class="page-head">' +
+        '<div class="crumbs"><a href="#/">Home</a> › Numbers</div>' +
+        "<h1>Temporary numbers by country</h1>" +
+        "<p>Choose a country to browse its sample numbers. All " + (COUNTRIES.length * NUMBERS_PER_COUNTRY) + " numbers on this site are fictional demos with sample inboxes.</p></div>" +
+        demoNote("Demo notice: these are sample numbers for demonstration only. They are not connected to any mobile network and cannot receive real SMS messages.") +
+        '<div class="country-grid" style="padding-bottom:16px">' + cards + "</div></div>";
+    }
+
+    function viewCountry(c) {
+      var list = numbersFor(c).map(numberRow).join("");
+      var others = COUNTRIES.filter(function (x) { return x.id !== c.id; }).map(function (x) {
+        return '<a href="#/country/' + x.id + '">' + x.flag + " " + esc(x.name) + "</a>";
+      }).join(" · ");
+      return '<div class="wrap"><div class="page-head">' +
+        '<div class="crumbs"><a href="#/">Home</a> › <a href="#/numbers">Numbers</a> › ' + esc(c.name) + "</div>" +
+        "<h1>" + c.flag + " " + esc(c.name) + " temporary numbers (demo)</h1>" +
+        "<p>" + NUMBERS_PER_COUNTRY + " sample numbers for " + esc(c.name) + " (" + esc(c.code) + "). Pick one to open its sample inbox and see the kind of messages a receive-SMS service displays.</p></div>" +
+        demoNote("Demo notice: every number below is a fictional sample. These numbers do not receive real SMS — the inboxes contain sample messages only.") +
+        '<div class="num-list">' + list + "</div>" +
+        '<p style="margin-top:22px;color:var(--muted);font-size:.93rem">Other countries: ' + others + "</p></div>";
+    }
+
+    function viewNumber(num) {
+      var msgs = messagesFor(num.id).map(function (m) {
+        return '<div class="msg"><div class="avatar" aria-hidden="true">' + esc(m.from.slice(0, 2).toUpperCase()) +
+          '</div><div class="body"><div class="from"><span>' + esc(m.from) + '</span><span class="when">' + esc(m.when) +
+          '</span></div><div class="text">' + m.text + "</div></div></div>";
+      }).join("");
+      var others = numbersFor(num.country).filter(function (n) { return n.id !== num.id; }).slice(0, 3).map(numberRow).join("");
+      return '<div class="wrap"><div class="page-head">' +
+        '<div class="crumbs"><a href="#/">Home</a> › <a href="#/numbers">Numbers</a> › <a href="#/country/' + num.country.id + '">' + esc(num.country.name) + "</a> › " + esc(num.display) + "</div>" +
+        "<h1 class=\"mono\" style=\"font-size:clamp(1.4rem,3.4vw,2rem)\">" + num.country.flag + " " + esc(num.display) + "</h1>" +
+        '<p>' + statusBadge(num) + "</p></div>" +
+        demoNote("This is a demo number. It is fictional and cannot receive real text messages — the inbox below shows sample messages only, and refreshing will never produce new ones.") +
+        '<div style="display:flex;gap:10px;flex-wrap:wrap">' +
+          '<button class="btn" id="copyBtn" type="button">Copy number</button>' +
+          '<a class="btn ghost" href="#/country/' + num.country.id + '">More ' + esc(num.country.name) + " numbers</a></div>" +
+        '<div class="inbox"><div class="inbox-head"><span class="t">Sample inbox (demo)</span><span class="badge demo">Sample messages</span>' +
+          '<span class="spacer"><button class="btn small ghost" id="refreshBtn" type="button">↻ Refresh inbox</button></span></div>' +
+          '<div class="refresh-status" id="refreshStatus"></div>' +
+          msgs +
+        "</div>" +
+        '<div class="page-head" style="padding-top:34px"><h2 style="font-size:1.3rem;margin:0 0 14px">More ' + esc(num.country.name) + ' sample numbers</h2></div>' +
+        '<div class="num-list">' + others + "</div></div>";
+    }
+
+    function viewArticlesIndex() {
+      return '<div class="wrap"><div class="page-head">' +
+        '<div class="crumbs"><a href="#/">Home</a> › Articles</div>' +
+        "<h1>Articles &amp; guides</h1>" +
+        "<p>Original explainers about temporary phone numbers, online SMS and privacy — written by the ReceiveSMSHub team.</p></div>" +
+        '<div class="art-grid" style="padding-bottom:16px">' + ARTICLES.map(articleCard).join("") + "</div></div>";
+    }
+
+    function viewArticle(a) {
+      var others = ARTICLES.filter(function (x) { return x.id !== a.id; }).map(articleCard).join("");
+      return '<div class="wrap"><div class="page-head">' +
+        '<div class="crumbs"><a href="#/">Home</a> › <a href="#/articles">Articles</a> › ' + esc(a.tag) + "</div>" +
+        "<h1>" + esc(a.title) + '</h1><p>' + a.minutes + " min read · ReceiveSMSHub team</p></div>" +
+        '<div class="prose">' + a.body + "</div>" +
+        '<div class="page-head" style="padding-top:26px"><h2 style="font-size:1.3rem;margin:0 0 14px">Keep reading</h2></div>' +
+        '<div class="art-grid">' + others + "</div></div>";
+    }
+
+    function viewFaq() {
+      return '<div class="wrap"><div class="page-head">' +
+        '<div class="crumbs"><a href="#/">Home</a> › FAQ</div>' +
+        "<h1>Frequently asked questions</h1>" +
+        "<p>Straight answers about temporary numbers, receive-SMS services, and what this demonstration site does and does not do.</p></div>" +
+        '<div class="faq-list" style="padding-bottom:16px">' + FAQS.map(function (f, i) { return faqItem(f, i === 0); }).join("") + "</div></div>";
+    }
+
+    function prosePage(crumb, title, intro, bodyHtml) {
+      return '<div class="wrap"><div class="page-head">' +
+        '<div class="crumbs"><a href="#/">Home</a> › ' + crumb + "</div>" +
+        "<h1>" + title + "</h1>" + (intro ? "<p>" + intro + "</p>" : "") + "</div>" +
+        '<div class="prose">' + bodyHtml + "</div></div>";
+    }
+
+    function viewAbout() {
+      return prosePage("About", "About ReceiveSMSHub",
+        "What this site is, why it exists, and how it works.",
+        "<p>ReceiveSMSHub is a small educational project that demonstrates how temporary phone number and receive-SMS services work. Sites like this are widely used around the world, yet many people only encounter the idea at a sign-up form and have no chance to explore the concept safely first. This demo exists to close that gap.</p>" +
+        "<h2>What you can do here</h2>" +
+        "<p>You can browse sample temporary numbers for ten countries, open their sample inboxes, copy a number, and read our original guides about how the technology works and how it compares with using your real number. Everything runs in your browser — there is no account, no payment and no tracking of the numbers you view.</p>" +
+        "<h2>What this site is not</h2>" +
+        "<p>ReceiveSMSHub is <strong>not</strong> a working SMS service. It operates no phone numbers, has no connection to any mobile network, and cannot send or receive text messages. Every number is fictional (several use officially reserved fictional ranges), and every message is a sample written by our team to illustrate what a real inbox looks like. Please read the <a href=\"#/disclaimer\">Disclaimer</a> for the full picture.</p>" +
+        "<h2>Our goal</h2>" +
+        "<p>We want visitors to leave understanding three things: how receive-SMS services work behind the scenes, when a temporary number is a smart privacy choice, and when it is not safe to use one. If our guides help you make that call with confidence, the demo has done its job.</p>");
+    }
+
+    function viewContact() {
+      return prosePage("Contact", "Contact us",
+        "Questions about the demo, the guides, or a correction? Get in touch.",
+        "<p>The simplest way to reach the ReceiveSMSHub team is by email:</p>" +
+        '<p style="font-size:1.1rem"><strong><a href="mailto:contact@receivesmshub.github.io">contact@receivesmshub.github.io</a></strong></p>' +
+        "<p>We read every message and aim to reply within a few working days. Please note that this is a demonstration website: we cannot provide working phone numbers, deliver verification codes, or recover messages, because the numbers shown here are fictional samples.</p>" +
+        "<h2>What to write about</h2>" +
+        "<ul><li>Corrections or suggestions for our articles and FAQ</li><li>Feedback on the demo experience</li><li>Privacy questions about this website</li></ul>");
+    }
+
+    function viewPrivacy() {
+      return prosePage("Privacy Policy", "Privacy Policy",
+        "Last updated: November 2026. How this website handles information.",
+        "<h2>Overview</h2><p>ReceiveSMSHub is a static demonstration website. It has no user accounts, no sign-up forms, no comment system and no database. We do not ask for, collect or store your personal information.</p>" +
+        "<h2>Information we do not collect</h2><p>Because the site is a front-end demo, the numbers you view, the inboxes you open and the pages you read are never transmitted to us or stored anywhere. Nothing about your browsing here is recorded by the site itself.</p>" +
+        "<h2>Hosting logs</h2><p>Like almost every website, our hosting provider may keep standard technical server logs (such as IP address, browser type and pages requested) for security and operational purposes. These logs are handled by the hosting provider under its own policies.</p>" +
+        "<h2>Cookies</h2><p>This website does not set advertising or tracking cookies. Any cookies present would come only from essential hosting infrastructure.</p>" +
+        "<h2>Third-party links</h2><p>Pages on this site may link to external websites. We are not responsible for the privacy practices of those sites, and we encourage you to read their policies.</p>" +
+        "<h2>Contact</h2><p>Questions about this policy can be sent to <a href=\"mailto:contact@receivesmshub.github.io\">contact@receivesmshub.github.io</a>.</p>");
+    }
+
+    function viewTerms() {
+      return prosePage("Terms of Use", "Terms of Use",
+        "Last updated: November 2026. The rules for using this demonstration website.",
+        "<h2>1. Nature of the service</h2><p>ReceiveSMSHub is a free, front-end demonstration of how temporary phone number services work. All numbers and messages displayed are fictional samples. The site does not provide telecommunications services and cannot receive, send or forward SMS messages.</p>" +
+        "<h2>2. Acceptable use</h2><p>You may browse the site and read its content for personal, educational purposes. You agree not to represent the sample numbers as real, working numbers, and not to use content from this site to mislead others about the availability of a working SMS service.</p>" +
+        "<h2>3. No warranties</h2><p>The site and its content are provided \u201Cas is\u201D, without warranties of any kind. We do not guarantee that the site will be uninterrupted, error-free or available at any particular time.</p>" +
+        "<h2>4. Limitation of liability</h2><p>To the fullest extent permitted by law, ReceiveSMSHub is not liable for any loss arising from reliance on the sample numbers, sample messages or educational content shown here.</p>" +
+        "<h2>5. Changes</h2><p>We may update these terms from time to time. Continued use of the site after a change means you accept the updated terms.</p>");
+    }
+
+    function viewDisclaimer() {
+      return prosePage("Disclaimer", "Disclaimer",
+        "Please read this page carefully — it explains exactly what this website is.",
+        "<h2>This is a demonstration website</h2><p>ReceiveSMSHub is a static, front-end demonstration created for educational purposes. It shows how temporary phone number and receive-SMS services look and work, using sample content only.</p>" +
+        "<h2>The numbers are fictional</h2><p>Every phone number listed on this site is a sample. US numbers use the officially reserved fictional 555-01XX range, UK numbers use Ofcom\u2019s reserved fictional 020 7946 range, and the remaining numbers follow the same demonstration pattern. None of these numbers is connected to a mobile network, a SIM card or any real subscriber.</p>" +
+        "<h2>The messages are samples</h2><p>Every message in every inbox on this site was written by our team as an illustration. No message shown here was sent by any real company or person, and sender names are generic examples. No real SMS has been, or can be, received through this website.</p>" +
+        "<h2>Do not rely on this site for verification</h2><p>Because the numbers are fictional, no verification code, password reset or any other real text message can ever arrive here. If you need a working temporary number, you will need a real telecommunications service; if you need to protect an important account, use your own number.</p>" +
+        "<h2>Accuracy of educational content</h2><p>Our articles describe how receive-SMS services work in general terms. Details of real services vary, and practices and rules change over time; treat the guides as a starting point, not professional advice.</p>");
+    }
+
+    function viewNotFound() {
+      return '<div class="wrap"><div class="page-head"><h1>Page not found</h1>' +
+        "<p>The page you are looking for does not exist. Try the home page or the country list instead.</p></div>" +
+        '<p style="padding-bottom:16px"><a class="btn" href="#/">Go to home page</a></p></div>';
+    }
+
+    /* ---------------- Router ---------------- */
+    function render() {
+      var hash = location.hash.replace(/^#/, "") || "/";
+      var parts = hash.split("/").filter(function (s) { return s.length > 0; });
+      var html, title = "Receive SMS Online — Free Temporary Phone Numbers (Demo)";
+
+      if (parts.length === 0) { html = viewHome(); }
+      else if (parts[0] === "numbers") { html = viewNumbersIndex(); }
+      else if (parts[0] === "country" && parts[1] && countryById(parts[1])) {
+        var c = countryById(parts[1]);
+        html = viewCountry(c);
+        title = c.name + " Temporary Numbers (Demo) — ReceiveSMSHub";
+      }
+      else if (parts[0] === "number" && parts[1] && findNumber(parts[1])) {
+        var n = findNumber(parts[1]);
+        html = viewNumber(n);
+        title = n.display + " — Sample SMS Inbox (Demo) — ReceiveSMSHub";
+      }
+      else if (parts[0] === "articles") { html = viewArticlesIndex(); title = "Articles & Guides — ReceiveSMSHub"; }
+      else if (parts[0] === "article" && parts[1] && articleById(parts[1])) {
+        var a = articleById(parts[1]);
+        html = viewArticle(a);
+        title = a.title + " — ReceiveSMSHub";
+      }
+      else if (parts[0] === "faq") { html = viewFaq(); title = "FAQ — ReceiveSMSHub"; }
+      else if (parts[0] === "about") { html = viewAbout(); title = "About — ReceiveSMSHub"; }
+      else if (parts[0] === "contact") { html = viewContact(); title = "Contact — ReceiveSMSHub"; }
+      else if (parts[0] === "privacy") { html = viewPrivacy(); title = "Privacy Policy — ReceiveSMSHub"; }
+      else if (parts[0] === "terms") { html = viewTerms(); title = "Terms of Use — ReceiveSMSHub"; }
+      else if (parts[0] === "disclaimer") { html = viewDisclaimer(); title = "Disclaimer — ReceiveSMSHub"; }
+      else { html = viewNotFound(); title = "Page Not Found — ReceiveSMSHub"; }
+
+      app.innerHTML = html;
+      document.title = title;
+      window.scrollTo(0, 0);
+      document.getElementById("mainNav").classList.remove("open");
+      document.getElementById("menuBtn").setAttribute("aria-expanded", "false");
+      bindNumberPage();
+    }
+
+    function bindNumberPage() {
+      var copyBtn = document.getElementById("copyBtn");
+      if (copyBtn) {
+        copyBtn.addEventListener("click", function () {
+          var parts = location.hash.split("/");
+          var num = findNumber(parts[parts.length - 1]);
+          var text = num ? num.display : "";
+          function done() { toast("Sample number copied: " + text); }
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
+          } else { fallbackCopy(text); done(); }
+        });
+      }
+      var refreshBtn = document.getElementById("refreshBtn");
+      if (refreshBtn) {
+        refreshBtn.addEventListener("click", function () {
+          var status = document.getElementById("refreshStatus");
+          refreshBtn.disabled = true;
+          status.className = "refresh-status show";
+          status.innerHTML = '<span class="spinner" aria-hidden="true"></span> Checking for new messages…';
+          setTimeout(function () {
+            status.innerHTML = "No new messages. This is a demo inbox with sample messages, so nothing new can arrive.";
+            refreshBtn.disabled = false;
+          }, 1200);
+        });
+      }
+    }
+    function fallbackCopy(text) {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+    }
+
+    document.getElementById("menuBtn").addEventListener("click", function () {
+      var nav = document.getElementById("mainNav");
+      var open = nav.classList.toggle("open");
+      this.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+
+    window.addEventListener("hashchange", render);
+    render();
+    </script>
+  </body>
+</html>
